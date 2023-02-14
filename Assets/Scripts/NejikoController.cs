@@ -27,7 +27,7 @@ public class NejikoController : MonoBehaviour
         public int Life() {
             return life;
         }
-
+        //trueなら気絶stun状態
         bool IsStun() {
             return recoverTime > 0.0f || life <= 0;
         }
@@ -52,7 +52,8 @@ public class NejikoController : MonoBehaviour
             //動きを止め気絶状態からの復帰カウントを進める
             moveDirection.x = 0.0f;
             moveDirection.z = 0.0f;
-            recoverTime -= Time.deltaTime;
+            recoverTime -= Time.deltaTime;//0.5秒後に解除する
+            //Time.deltaTimeで1秒間に1減らす間隔。
         }else {
             //徐々に加速しZ方向に常に前身させる
             float acceleratedZ = moveDirection.z + (accelerationZ * Time.deltaTime);
